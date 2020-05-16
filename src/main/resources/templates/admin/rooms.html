@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="./layout/adminlayout.html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+    <div layout:fragment="admin">
+        <div class="container">
+            <div th:if="${deletesuccess}" class="alert alert-success" role="alert">
+                Successfully Deleted!
+            </div>
+            <div th:if="${updatesuccess}" class="alert alert-success" role="alert">
+                Successfully Updated!
+            </div>
+            <div class="row">
+                <div class="col-sm-3" th:each="room:${rooms}">
+                    <div class="card my-4" style="width: 18rem;" th:style="${room.roomStatus == room.roomStatus.Reverse}?${'border-color:green;'}:${'border-color:red;'}">
+                        <div class="card-header text-muted text-center">Rooms</div>
+                        <div class="card-body">
+                            <p class="card-text" th:text="${'Room Number : '+room.roomsNumber}"></p>
+                            <p class="card-text" th:text="${'Room Status : '+room.roomStatus}"></p>
+                            <p class="card-text" th:text="${'Room Type  : '+room.roomType}"></p>
+                            <a href="#" th:href="@{'/room/'+${room.id}}" class="btn btn-primary btn-sm">Go Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
